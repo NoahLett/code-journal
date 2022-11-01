@@ -11,14 +11,81 @@
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Proza+Libre&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
+  <header class="header-box">
+    <div class="container">
+      <div class="row">
+        <div class="column-full">
+          <div class="header-text-box">
+            <h1 class="header-text">Code Journal</h1>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
   <main>
+    <div class="container" data-view="entry-form">
+      <form class="journal-form">
+        <div class="row">
+          <div class="column-full">
+            <h2 class="form-header-text">New Entry</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-half">
+            <img
+              class="entry-image"
+              src="images/placeholder-image-square.jpg"
+              alt="placeholder-image">
+          </div>
+          <div class="column-half">
+            <div>
+              <label for="entry-title">Title</label>
+              <input
+                required
+                name="title"
+                type="text"
+                class="entry-title">
+            </div>
+            <div>
+              <label for="entry-photo-url">Photo URL</label>
+              <input
+                required
+                name="photoUrl"
+                type="url"
+                class="entry-photo-url">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <label for="entry-notes">Notes</label>
+            <textarea
+              required
+              name="notes"
+              class="entry-notes"
+              rows="10"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <div class="form-actions">
+              <button class="save-button" type="submit">SAVE</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
