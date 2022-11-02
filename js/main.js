@@ -31,6 +31,8 @@ function handleSubmit(event) {
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   data.entries.unshift(obj);
   data.nextEntryId++;
+  $formView.className = 'form-view hidden';
+  $entriesView.className = 'entries-view';
 }
 
 // DOM Tree Creation Function //
@@ -85,6 +87,41 @@ window.addEventListener('DOMContentLoaded', looper);
 function looper(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var result = renderPost(data.entries[i]);
-    $ul.appendChild(result);
+    $ul.prepend(result);
   }
+}
+
+var click = 0;
+
+var $a = document.querySelector('a');
+var $formView = document.querySelector('.form-view');
+var $entriesView = document.querySelector('.entries-view');
+var $buttonNew = document.querySelector('.new-button');
+var $noContent = document.querySelector('.no-content-box');
+
+$a.addEventListener('click', handleClick1);
+$buttonNew.addEventListener('click', handleClick2);
+
+function handleClick1(event) {
+  click++;
+  if (click > 0) {
+    $formView.className = 'form-view hidden';
+    $entriesView.className = 'entries-view';
+  }
+  click = 0;
+}
+
+function handleClick2(event) {
+  click++;
+  if (click > 0) {
+    $formView.className = 'form-view';
+    $entriesView.className = 'entries-view hidden';
+  }
+  click = 0;
+}
+
+if (localStorage !== null) {
+  $noContent.className = 'no-content-box hidden';
+} else if (localStorage === null) {
+  $noContent.className = 'no-content-box';
 }

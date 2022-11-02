@@ -42,6 +42,10 @@ textarea:focus {
   height: 3rem;
 }
 
+.header-text-box {
+  display: flex;
+}
+
 .header-text {
   font-family: "Proza Libre", sans-serif;
   font-weight: lighter;
@@ -50,20 +54,33 @@ textarea:focus {
   margin-top: 0.7rem;
 }
 
+.entries-link {
+  color: white;
+  font-family: "Proza Libre", sans-serif;
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-top: 0.95rem;
+  margin-left: 1rem;
+}
+
 .journal-form {
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
 }
 
+.entries-header-text,
 .form-header-text {
   font-size: 1.65rem;
+  font-family: "Open Sans", sans-serif;
   margin-top: 0.5rem;
 }
 
+.picture,
 .entry-image {
-  max-width: 100%;
-  margin-bottom: 1rem;
+  width: 100%;
+  height: 375px;
   border-radius: 4px;
+  object-fit: cover;
 }
 
 .form-actions {
@@ -71,6 +88,7 @@ textarea:focus {
   justify-content: right;
 }
 
+.new-button,
 .save-button {
   margin-top: 0.75rem;
   background-color: #562b81;
@@ -80,6 +98,7 @@ textarea:focus {
   height: 2.5rem;
   border: none;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 ul {
@@ -89,13 +108,6 @@ ul {
 
 .post {
   margin-top: 3rem;
-}
-
-.picture {
-  width: 100%;
-  height: 375px;
-  border-radius: 4px;
-  object-fit: cover;
 }
 
 .topic {
@@ -108,4 +120,15 @@ ul {
 .content {
   font-family: "Open Sans", sans-serif;
   font-size: 1.3rem;
+}
+
+.new-button-box {
+  display: flex;
+  justify-content: right;
+}
+
+.no-content-box {
+  display: flex;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif;
 }
