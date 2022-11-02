@@ -11,14 +11,119 @@
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Proza+Libre&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
+  <header class="header-box">
+    <div class="container">
+      <div class="row">
+        <div class="column-full">
+          <div class="header-text-box">
+            <h1 class="header-text">Code Journal</h1>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
   <main>
+    <div class="container" data-view="entry-form">
+      <form class="journal-form">
+        <div class="row">
+          <div class="column-full">
+            <h2 class="form-header-text">New Entry</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-half">
+            <img
+              class="entry-image"
+              src="images/placeholder-image-square.jpg"
+              alt="placeholder-image">
+          </div>
+          <div class="column-half">
+            <div>
+              <label for="entry-title">Title</label>
+              <input
+                required
+                name="title"
+                type="text"
+                class="entry-title">
+            </div>
+            <div>
+              <label for="entry-photo-url">Photo URL</label>
+              <input
+                required
+                name="photoUrl"
+                type="url"
+                class="entry-photo-url">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <label for="entry-notes">Notes</label>
+            <textarea
+              required
+              name="notes"
+              class="entry-notes"
+              rows="10"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <div class="form-actions">
+              <button class="save-button" type="submit">SAVE</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="container" data-view="entries">
+      <ul>
+        <li>
+          <div class="post">
+            <div class="row">
+              <div class="column-half">
+                <img
+                  src="https://miro.medium.com/max/1400/1*G0or3nXOtD3vVEvyEbCldQ.png"
+                  alt="Ada Lovelace"
+                  class="picture">
+              </div>
+              <div class="column-half">
+                <div><h2 class="topic">Ada Lovelace</h2></div>
+                <div><p class="content">Augusta Ada King, Countess of Lovelace was an English mathematician and writer, chiefly known for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine.</p></div>
+                <div><p class="content">She was the first to recognize that the machine had applications beyond pure calculation, and to have published the first algorithm intended to be carried out by such a machine.</p></div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="post">
+            <div class="row">
+              <div class="column-half">
+                <img
+                  src="https://res.cloudinary.com/jerrick/image/upload/v1597848857/5f3d3d184b4f2c001cffc255.jpg"
+                  alt="JavaScript"
+                  class="picture">
+              </div>
+              <div class="column-half">
+                <div><h2 class="topic">JavaScript</h2></div>
+                <div><p class="content">JavaScript, often abbreviated as JS, is a programming language that conforms to the ECMAScript specification.</p></div>
+                <div><p class="content">JavaScript is high-level, often just-in-time compiled, and multi-paradigm. It has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.</p></div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
