@@ -28,6 +28,7 @@ input {
 
 textarea {
   height: 11rem;
+  font-family: "Open Sans", sans-serif;
 }
 
 input:focus,
