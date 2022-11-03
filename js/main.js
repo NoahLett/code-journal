@@ -88,7 +88,7 @@ function renderPost(obj) {
 
 var $ul = document.querySelector('ul');
 
-window.addEventListener('DOMContentLoaded', looper);
+// window.addEventListener('DOMContentLoaded', looper);
 
 function looper(event) {
   for (var i = 0; i < data.entries.length; i++) {
@@ -99,10 +99,14 @@ function looper(event) {
 
 // View Swapping Functionality //
 
-if (data.entries.length === 0) {
-  $noEntry.className = 'no-entry';
-} else {
-  $noEntry.className = 'no-entry hidden';
+$form.addEventListener('submit', handleContentSwap);
+
+function handleContentSwap(event) {
+  if (data.entries.length === 0) {
+    $noEntry.className = 'no-entry';
+  } else {
+    $noEntry.className = 'no-entry hidden';
+  }
 }
 
 function handleViewSwap(string) {
@@ -129,5 +133,7 @@ $saveButton.addEventListener('click', function (event) {
 });
 
 window.addEventListener('DOMContentLoaded', function (event) {
+  looper();
   handleViewSwap(data.view);
+  handleContentSwap();
 });
