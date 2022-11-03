@@ -31,8 +31,7 @@ function handleSubmit(event) {
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   data.entries.unshift(obj);
   data.nextEntryId++;
-  $formView.className = 'form-view hidden';
-  $entriesView.className = 'entries-view';
+  $ul.prepend(renderPost(obj));
 }
 
 // DOM Tree Creation Function //
@@ -91,37 +90,28 @@ function looper(event) {
   }
 }
 
-var click = 0;
+var $view = document.querySelectorAll('.view');
+var $entriesLink = document.querySelector('.entries-link');
+var $newButton = document.querySelector('.new-button');
+var $saveButton = document.querySelector('.save-button');
+var $noEntry = document.querySelector('.no-entry');
 
-var $a = document.querySelector('a');
-var $formView = document.querySelector('.form-view');
-var $entriesView = document.querySelector('.entries-view');
-var $buttonNew = document.querySelector('.new-button');
-var $noContent = document.querySelector('.no-content-box');
+$entriesLink.addEventListener('click', handleViewSwap);
+$newButton.addEventListener('click', handleViewSwap);
+$saveButton.addEventListener('click', handleViewSwap);
 
-$a.addEventListener('click', handleClick1);
-$buttonNew.addEventListener('click', handleClick2);
-
-function handleClick1(event) {
-  click++;
-  if (click > 0) {
-    $formView.className = 'form-view hidden';
-    $entriesView.className = 'entries-view';
+function handleViewSwap(event) {
+  for (var i = 0; i < $view.length; i++) {
+    if ($view[i].getAttribute('data-view') === event.target.getAttribute('data-view')) {
+      $view[i].className = 'view';
+    } else {
+      $view[i].className = 'view hidden';
+    }
   }
-  click = 0;
 }
 
-function handleClick2(event) {
-  click++;
-  if (click > 0) {
-    $formView.className = 'form-view';
-    $entriesView.className = 'entries-view hidden';
-  }
-  click = 0;
-}
-
-if (localStorage !== null) {
-  $noContent.className = 'no-content-box hidden';
-} else if (localStorage === null) {
-  $noContent.className = 'no-content-box';
+if (data.entries.length === 0) {
+  $noEntry.className = 'no-entry';
+} else {
+  $noEntry.className = 'no-entry hidden';
 }
