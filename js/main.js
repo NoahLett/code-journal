@@ -3,9 +3,16 @@
 var $entryPhotoUrl = document.querySelector('input.entry-photo-url');
 var $entryImage = document.querySelector('img.entry-image');
 var $form = document.forms[0];
+var $view = document.querySelectorAll('.view');
+var $entriesLink = document.querySelector('.entries-link');
+var $newlink = document.querySelector('.new-link');
+var $saveButton = document.querySelector('.save-button');
+var $noEntry = document.querySelector('.no-entry');
 
 $entryPhotoUrl.addEventListener('input', handleUrlInput);
 $form.addEventListener('submit', handleSubmit);
+
+// Image URL Placeholder Function //
 
 function handleUrlInput(event) {
   if ($entryPhotoUrl.value !== '') {
@@ -14,6 +21,8 @@ function handleUrlInput(event) {
     $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   }
 }
+
+// Submit Entry Function //
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -29,54 +38,102 @@ function handleSubmit(event) {
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   data.entries.unshift(obj);
   data.nextEntryId++;
+  $ul.prepend(renderPost(obj));
 }
 
 // DOM Tree Creation Function //
 
-// function renderPost(obj) {
-//   var $li = document.createElement('li');
+function renderPost(obj) {
+  var $li = document.createElement('li');
 
-//   var $divPost = document.createElement('div');
-//   $divPost.setAttribute('class', 'post');
-//   $li.appendChild($divPost);
+  var $divPost = document.createElement('div');
+  $divPost.setAttribute('class', 'post');
+  $li.appendChild($divPost);
 
-//   var $divRow = document.createElement('div');
-//   $divRow.setAttribute('class', 'row');
-//   $divPost.appendChild($divRow);
+  var $divRow = document.createElement('div');
+  $divRow.setAttribute('class', 'row');
+  $divPost.appendChild($divRow);
 
-//   var $divColumnHalf1 = document.createElement('div');
-//   $divColumnHalf1.setAttribute('class', 'column-half');
-//   $divRow.appendChild($divColumnHalf1);
+  var $divColumnHalf1 = document.createElement('div');
+  $divColumnHalf1.setAttribute('class', 'column-half');
+  $divRow.appendChild($divColumnHalf1);
 
-//   var $imgPicture = document.createElement('img');
-//   $imgPicture.setAttribute('src', obj.photoUrl);
-//   $imgPicture.setAttribute('class', 'picture');
-//   $divColumnHalf1.appendChild($imgPicture);
+  var $imgPicture = document.createElement('img');
+  $imgPicture.setAttribute('src', obj.photoUrl);
+  $imgPicture.setAttribute('class', 'picture');
+  $divColumnHalf1.appendChild($imgPicture);
 
-//   var $divColumnHalf2 = document.createElement('div');
-//   $divColumnHalf2.setAttribute('class', 'column-half');
-//   $divRow.appendChild($divColumnHalf2);
+  var $divColumnHalf2 = document.createElement('div');
+  $divColumnHalf2.setAttribute('class', 'column-half');
+  $divRow.appendChild($divColumnHalf2);
 
-//   var $divTopic = document.createElement('div');
-//   $divColumnHalf2.appendChild($divTopic);
+  var $divTopic = document.createElement('div');
+  $divColumnHalf2.appendChild($divTopic);
 
-//   var $h2Topic = document.createElement('h2');
-//   $h2Topic.setAttribute('class', 'topic');
-//   $divTopic.appendChild($h2Topic);
+  var $h2Topic = document.createElement('h2');
+  $h2Topic.setAttribute('class', 'topic');
+  $h2Topic.textContent = obj.title;
+  $divTopic.appendChild($h2Topic);
 
-//   var $divContent1 = document.createElement('div');
-//   $divColumnHalf2.appendChild($divContent1);
+  var $divContent1 = document.createElement('div');
+  $divColumnHalf2.appendChild($divContent1);
 
-//   var $pContent1 = document.createElement('p');
-//   $pContent1.setAttribute('class', 'content');
-//   $divContent1.appendChild($pContent1);
+  var $pContent1 = document.createElement('p');
+  $pContent1.setAttribute('class', 'content');
+  $pContent1.textContent = obj.notes;
+  $divContent1.appendChild($pContent1);
 
-//   var $divContent2 = document.createElement('div');
-//   $divColumnHalf2.appendChild($divContent2);
+  return $li;
+}
 
-//   var $pContent2 = document.createElement('p');
-//   $pContent2.setAttribute('class', 'content');
-//   $divContent2.appendChild($pContent2);
+var $ul = document.querySelector('ul');
 
-//   return $li;
-// }
+// window.addEventListener('DOMContentLoaded', looper);
+
+function looper(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    var result = renderPost(data.entries[i]);
+    $ul.prepend(result);
+  }
+}
+
+// View Swapping Functionality //
+
+$form.addEventListener('submit', handleContentSwap);
+
+function handleContentSwap(event) {
+  if (data.entries.length === 0) {
+    $noEntry.className = 'no-entry';
+  } else {
+    $noEntry.className = 'no-entry hidden';
+  }
+}
+
+function handleViewSwap(string) {
+  data.view = string;
+  for (var i = 0; i < $view.length; i++) {
+    if ($view[i].getAttribute('data-view') === string) {
+      $view[i].className = 'view';
+    } else {
+      $view[i].className = 'view hidden';
+    }
+  }
+}
+
+$newlink.addEventListener('click', function (event) {
+  handleViewSwap(event.target.getAttribute('data-view'));
+});
+
+$entriesLink.addEventListener('click', function (event) {
+  handleViewSwap(event.target.getAttribute('data-view'));
+});
+
+$saveButton.addEventListener('click', function (event) {
+  handleViewSwap(event.target.getAttribute('data-view'));
+});
+
+window.addEventListener('DOMContentLoaded', function (event) {
+  looper();
+  handleViewSwap(data.view);
+  handleContentSwap();
+});
