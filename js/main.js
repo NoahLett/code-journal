@@ -3,9 +3,16 @@
 var $entryPhotoUrl = document.querySelector('input.entry-photo-url');
 var $entryImage = document.querySelector('img.entry-image');
 var $form = document.forms[0];
+var $view = document.querySelectorAll('.view');
+var $entriesLink = document.querySelector('.entries-link');
+var $newlink = document.querySelector('.new-link');
+var $saveButton = document.querySelector('.save-button');
+var $noEntry = document.querySelector('.no-entry');
 
 $entryPhotoUrl.addEventListener('input', handleUrlInput);
 $form.addEventListener('submit', handleSubmit);
+
+// Image URL Placeholder Function //
 
 function handleUrlInput(event) {
   if ($entryPhotoUrl.value !== '') {
@@ -90,19 +97,18 @@ function looper(event) {
   }
 }
 
-var $view = document.querySelectorAll('.view');
-var $entriesLink = document.querySelector('.entries-link');
-var $newButton = document.querySelector('.new-button');
-var $saveButton = document.querySelector('.save-button');
-var $noEntry = document.querySelector('.no-entry');
+// View Swapping Functionality //
 
-$entriesLink.addEventListener('click', handleViewSwap);
-$newButton.addEventListener('click', handleViewSwap);
-$saveButton.addEventListener('click', handleViewSwap);
+if (data.entries.length === 0) {
+  $noEntry.className = 'no-entry';
+} else {
+  $noEntry.className = 'no-entry hidden';
+}
 
-function handleViewSwap(event) {
+function handleViewSwap(string) {
+  data.view = string;
   for (var i = 0; i < $view.length; i++) {
-    if ($view[i].getAttribute('data-view') === event.target.getAttribute('data-view')) {
+    if ($view[i].getAttribute('data-view') === string) {
       $view[i].className = 'view';
     } else {
       $view[i].className = 'view hidden';
@@ -110,8 +116,18 @@ function handleViewSwap(event) {
   }
 }
 
-if (data.entries.length === 0) {
-  $noEntry.className = 'no-entry';
-} else {
-  $noEntry.className = 'no-entry hidden';
-}
+$newlink.addEventListener('click', function (event) {
+  handleViewSwap(event.target.getAttribute('data-view'));
+});
+
+$entriesLink.addEventListener('click', function (event) {
+  handleViewSwap(event.target.getAttribute('data-view'));
+});
+
+$saveButton.addEventListener('click', function (event) {
+  handleViewSwap(event.target.getAttribute('data-view'));
+});
+
+window.addEventListener('DOMContentLoaded', function (event) {
+  handleViewSwap(data.view);
+});
