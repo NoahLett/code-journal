@@ -1,5 +1,7 @@
 /* global data */
 
+// DOM Query Selectors //
+
 var $entryPhotoUrl = document.querySelector('input.entry-photo-url');
 var $entryImage = document.querySelector('img.entry-image');
 var $form = document.forms[0];
@@ -46,6 +48,7 @@ function handleSubmit(event) {
 
 function renderPost(obj) {
   var $li = document.createElement('li');
+  $li.setAttribute('data-entry-id', obj.EntryId);
 
   var $divPost = document.createElement('div');
   $divPost.setAttribute('class', 'post');
@@ -88,6 +91,7 @@ function renderPost(obj) {
   var $iPen = document.createElement('i');
   $iPen.setAttribute('class', 'fa-solid fa-pen');
   $iPen.setAttribute('data-view', 'entry-form');
+  $iPen.setAttribute('data-entry-id', obj.EntryId);
   $divTopicOneFourth.appendChild($iPen);
 
   var $divContent1 = document.createElement('div');
@@ -152,12 +156,29 @@ window.addEventListener('DOMContentLoaded', function (event) {
 $ul.addEventListener('click', handleEditorSwap);
 
 function handleEditorSwap(event) {
+  data.view = 'entry-form';
   if (event.target.matches('i')) {
     for (var x = 0; x < $view.length; x++) {
       if ($view[x].getAttribute('data-view') === 'entry-form') {
         $view[x].className = 'view';
       } else {
         $view[x].className = 'view hidden';
+      }
+    }
+  }
+}
+
+// Entry Editing Functionality //
+
+$ul.addEventListener('click', assignEdit);
+
+function assignEdit(event) {
+  if (event.target.matches('i')) {
+    for (var i = 0; i < data.entries.length; i++) {
+      var string = event.target.getAttribute('data-entry-id');
+      var toNumber = Number(string);
+      if (data.entries[i].EntryId === toNumber) {
+        data.editing = data.entries[i];
       }
     }
   }
