@@ -8,6 +8,7 @@ var $entriesLink = document.querySelector('.entries-link');
 var $newlink = document.querySelector('.new-link');
 var $saveButton = document.querySelector('.save-button');
 var $noEntry = document.querySelector('.no-entry');
+var $ul = document.querySelector('ul');
 
 $entryPhotoUrl.addEventListener('input', handleUrlInput);
 $form.addEventListener('submit', handleSubmit);
@@ -68,12 +69,26 @@ function renderPost(obj) {
   $divRow.appendChild($divColumnHalf2);
 
   var $divTopic = document.createElement('div');
+  $divTopic.setAttribute('class', 'row');
   $divColumnHalf2.appendChild($divTopic);
+
+  var $divTopicThreeFourths = document.createElement('div');
+  $divTopicThreeFourths.setAttribute('class', 'column-three-fourths');
+  $divTopic.appendChild($divTopicThreeFourths);
 
   var $h2Topic = document.createElement('h2');
   $h2Topic.setAttribute('class', 'topic');
   $h2Topic.textContent = obj.title;
-  $divTopic.appendChild($h2Topic);
+  $divTopicThreeFourths.appendChild($h2Topic);
+
+  var $divTopicOneFourth = document.createElement('div');
+  $divTopicOneFourth.setAttribute('class', 'column-one-fourth pen-box');
+  $divTopic.appendChild($divTopicOneFourth);
+
+  var $iPen = document.createElement('i');
+  $iPen.setAttribute('class', 'fa-solid fa-pen');
+  $iPen.setAttribute('data-view', 'entry-form');
+  $divTopicOneFourth.appendChild($iPen);
 
   var $divContent1 = document.createElement('div');
   $divColumnHalf2.appendChild($divContent1);
@@ -85,10 +100,6 @@ function renderPost(obj) {
 
   return $li;
 }
-
-var $ul = document.querySelector('ul');
-
-// window.addEventListener('DOMContentLoaded', looper);
 
 function looper(event) {
   for (var i = 0; i < data.entries.length; i++) {
@@ -137,3 +148,17 @@ window.addEventListener('DOMContentLoaded', function (event) {
   handleViewSwap(data.view);
   handleContentSwap();
 });
+
+$ul.addEventListener('click', handleEditorSwap);
+
+function handleEditorSwap(event) {
+  if (event.target.matches('i')) {
+    for (var x = 0; x < $view.length; x++) {
+      if ($view[x].getAttribute('data-view') === 'entry-form') {
+        $view[x].className = 'view';
+      } else {
+        $view[x].className = 'view hidden';
+      }
+    }
+  }
+}

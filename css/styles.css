@@ -147,3 +147,17 @@ ul {
   justify-content: center;
   font-family: "Open Sans", sans-serif;
 }
+
+.pen-box {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.fa-solid,
+.fa-pen {
+  color: #562b81;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
