@@ -16,6 +16,12 @@ var $noEntry = document.querySelector('.no-entry');
 var $ul = document.querySelector('ul');
 var $formHeaderText = document.querySelector('.form-header-text');
 var $li = $ul.getElementsByTagName('li');
+// var $deleteLink = document.querySelector('.delete-link');
+var $deleteLinkBox = document.querySelector('.form-actions-2');
+// var $overlay = document.querySelector('.overlay');
+// var $modal = document.querySelector('.modal');
+// var $cancel = document.querySelector('.cancel');
+// var $confirm = document.querySelector('.confirm');
 
 $entryPhotoUrl.addEventListener('input', handleUrlInput);
 $form.addEventListener('submit', handleSubmit);
@@ -196,6 +202,7 @@ function handleEditorSwap(event) {
       if ($view[x].getAttribute('data-view') === 'entry-form') {
         $view[x].className = 'view';
         $formHeaderText.textContent = 'Edit Entry';
+        $deleteLinkBox.className = 'form-actions-2';
       } else {
         $view[x].className = 'view hidden';
       }
@@ -222,3 +229,5 @@ function assignEdit(event) {
     $entryNotes.textContent = data.editing.notes;
   }
 }
+
+// Delete Entry Functionality //

@@ -89,6 +89,11 @@ textarea:focus {
   justify-content: right;
 }
 
+.form-actions-2 {
+  display: flex;
+  justify-content: left;
+}
+
 .save-button {
   margin-top: 0.75rem;
   background-color: #562b81;
@@ -99,6 +104,7 @@ textarea:focus {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-right: 0;
 }
 
 .new-link {
@@ -138,9 +144,9 @@ ul {
   font-size: 1.3rem;
 }
 
-.new-button-box {
+.entries-header-box {
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
 }
 
 .no-content-box {
@@ -161,4 +167,80 @@ ul {
   margin-bottom: 1rem;
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+.delete-link {
+  font-family: "Open Sans", sans-serif;
+  color: red;
+  margin-top: 2rem;
+  margin-left: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0 0 0 / 50%);
+}
+
+.modal {
+  width: 400px;
+  height: 175px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 4px 4px 20px darkslategray;
+}
+
+.button-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.question {
+  font-family: "Open Sans", sans-serif;
+  padding-top: 2rem;
+}
+
+.cancel {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.15rem;
+  color: black;
+  background-color: darkgray;
+  width: 100px;
+  height: 35px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  top: 2.5rem;
+  left: 10px;
+}
+
+.confirm {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.15rem;
+  color: white;
+  background-color: #dc2626;
+  width: 100px;
+  height: 35px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  top: 2.5rem;
+  right: 10px;
 }

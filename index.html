@@ -80,7 +80,12 @@
             </div>
           </div>
           <div class="row">
-            <div class="column-full">
+            <div class="column-half-bottom">
+              <div class="form-actions-2 hidden">
+                <a href="#" class="delete-link">Delete Entry</a>
+              </div>
+            </div>
+            <div class="column-half-bottom">
               <div class="form-actions">
                 <button class="save-button" type="submit" data-view="entries">SAVE</button>
               </div>
@@ -92,11 +97,9 @@
     <div class="view" data-view="entries">
       <div class="container" data-view="entries">
         <div class="row" id="entries">
-          <div class="column-half">
-            <h2 class="entries-header-text">Entries</h2>
-          </div>
-          <div class="column-half">
-            <div class="new-button-box">
+          <div class="column-full">
+            <div class="entries-header-box">
+              <h2 class="entries-header-text">Entries</h2>
               <a href="#" class="new-link" data-view="entry-form">NEW</a>
             </div>
           </div>
@@ -113,6 +116,22 @@
         <ul>
 
         </ul>
+      </div>
+    </div>
+    <div class="overlay hidden"></div>
+    <div class="modal hidden">
+      <div class="row">
+        <div class="column-full">
+          <p class="question">Are you sure you want to delete this entry?</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column-full">
+          <div class="button-box">
+            <button class="cancel">CANCEL</button>
+            <button class="confirm">CONFIRM</button>
+          </div>
+        </div>
       </div>
     </div>
   </main>
