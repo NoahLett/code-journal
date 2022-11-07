@@ -16,12 +16,12 @@ var $noEntry = document.querySelector('.no-entry');
 var $ul = document.querySelector('ul');
 var $formHeaderText = document.querySelector('.form-header-text');
 var $li = $ul.getElementsByTagName('li');
-// var $deleteLink = document.querySelector('.delete-link');
+var $deleteLink = document.querySelector('.delete-link');
 var $deleteLinkBox = document.querySelector('.form-actions-2');
-// var $overlay = document.querySelector('.overlay');
-// var $modal = document.querySelector('.modal');
-// var $cancel = document.querySelector('.cancel');
-// var $confirm = document.querySelector('.confirm');
+var $overlay = document.querySelector('.overlay');
+var $modal = document.querySelector('.modal');
+var $cancel = document.querySelector('.cancel');
+var $confirm = document.querySelector('.confirm');
 
 $entryPhotoUrl.addEventListener('input', handleUrlInput);
 $form.addEventListener('submit', handleSubmit);
@@ -231,3 +231,42 @@ function assignEdit(event) {
 }
 
 // Delete Entry Functionality //
+
+$deleteLink.addEventListener('click', handleOpenModal);
+$cancel.addEventListener('click', handleCancel);
+$confirm.addEventListener('click', handleDelete);
+
+function handleOpenModal(event) {
+  if (event.target.matches('.delete-link')) {
+    $overlay.className = 'overlay';
+    $modal.className = 'modal';
+  }
+}
+
+function handleCancel(event) {
+  if (event.target.matches('.cancel')) {
+    $overlay.className = 'overlay hidden';
+    $modal.className = 'modal hidden';
+  }
+}
+
+function handleDelete(event) {
+  if (event.target.matches('.confirm')) {
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].EntryId === data.editing.EntryId) {
+        data.entries.splice([i], 1);
+      }
+    }
+    for (var x = 0; x < $li.length; x++) {
+      var string = $li[x].getAttribute('data-entry-id');
+      var toNumber = Number(string);
+      if (toNumber === data.editing.EntryId) {
+        delete $li[x];
+      }
+    }
+  }
+  $modal.className = 'modal hidden';
+  $overlay.className = 'overlay hidden';
+  data.view = 'entries';
+  location.reload();
+}
