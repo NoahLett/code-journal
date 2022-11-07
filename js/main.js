@@ -187,7 +187,7 @@ $saveButton.addEventListener('click', function (event) {
   handleViewSwap(event.target.getAttribute('data-view'));
 });
 
-$deleteLink.addEventListener('click', function (event) {
+$confirm.addEventListener('click', function (event) {
   handleViewSwap(event.target.getAttribute('data-view'));
 });
 
@@ -271,5 +271,4 @@ function handleDelete(event) {
   }
   $modal.className = 'modal hidden';
   $overlay.className = 'overlay hidden';
-  data.view = 'entries';
 }
