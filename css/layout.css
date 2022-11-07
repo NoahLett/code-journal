@@ -13,6 +13,11 @@
   flex-wrap: wrap;
 }
 
+.column-one-fourth,
+.column-three-fourths {
+  width: 50%;
+}
+
 .column-full,
 .column-half {
   width: 100%;
@@ -30,5 +35,13 @@
 
   .column-half {
     width: 50%;
+  }
+
+  .column-three-fourths {
+    width: 75%;
+  }
+
+  .column-one-fourth {
+    width: 25%;
   }
 }

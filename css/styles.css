@@ -68,6 +68,7 @@ textarea:focus {
   font-weight: bold;
 }
 
+.edit-entry-text,
 .entries-header-text,
 .form-header-text {
   font-size: 1.65rem;
@@ -146,4 +147,18 @@ ul {
   display: flex;
   justify-content: center;
   font-family: "Open Sans", sans-serif;
+}
+
+.pen-box {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.fa-solid,
+.fa-pen {
+  color: #562b81;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
