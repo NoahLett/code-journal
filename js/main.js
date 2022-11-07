@@ -187,6 +187,10 @@ $saveButton.addEventListener('click', function (event) {
   handleViewSwap(event.target.getAttribute('data-view'));
 });
 
+$deleteLink.addEventListener('click', function (event) {
+  handleViewSwap(event.target.getAttribute('data-view'));
+});
+
 window.addEventListener('DOMContentLoaded', function (event) {
   looper();
   handleViewSwap(data.view);
@@ -261,12 +265,11 @@ function handleDelete(event) {
       var string = $li[x].getAttribute('data-entry-id');
       var toNumber = Number(string);
       if (toNumber === data.editing.EntryId) {
-        delete $li[x];
+        $li[x].remove();
       }
     }
   }
   $modal.className = 'modal hidden';
   $overlay.className = 'overlay hidden';
   data.view = 'entries';
-  location.reload();
 }
